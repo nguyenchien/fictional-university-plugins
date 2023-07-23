@@ -9,7 +9,43 @@ class WordCount {
   function __construct() {
     add_action('admin_menu', array($this, 'adminPage'));
     add_action('admin_init', array($this, 'settings'));
+    add_filter('the_content', array($this, 'ifWrap'));
   }
+  
+  function ifWrap($content) {
+    if (is_main_query() && is_single() && (
+      get_option('wcp_wordcount', '1') || 
+      get_option('wcp_charactercount', '1') || 
+      get_option('wcp_readtime', '1'))) {
+        return $this->createHTML($content);
+    }
+    return $content;
+  }
+  
+  function createHTML($content) {
+    $html = '<h2>'.get_option('wcp_headline', 'Headline Default').'</h2><p>';
+    $wordCount = str_word_count(strip_tags($content));
+    
+    if (get_option('wcp_wordcount', '1')) {
+      $html .= 'The post has ' . $wordCount . ' words<br>';
+    }
+    
+    if (get_option('wcp_charactercount', '1')) {
+      $html .= 'The post has '. strlen(strip_tags($content)) . ' characters<br>';
+    }
+    
+    if (get_option('wcp_readtime', '1')) {
+      $html .= 'The post will take about '. round($wordCount/225) . ' minute(s) to read';
+    }
+    
+    $html .= "</p>";
+    
+    if (get_option('wcp_location', '0') == '0') {
+      return $html . $content;  
+    }
+    return $content . $html;
+  }
+  
   function settings() {
     add_settings_section( 'wcp_first_section', null, null, 'word-count-settings-page' );
 
@@ -19,7 +55,7 @@ class WordCount {
 
     // Headline Text
     add_settings_field( 'wcp_headline', 'Headline Text', array($this, 'headlineHTML'), 'word-count-settings-page', 'wcp_first_section');
-    register_setting('wordcountplugin', 'wcp_headline', array('sanitize_callback'=>'sanitize_text_field', 'default'=>'Headline Text'));
+    register_setting('wordcountplugin', 'wcp_headline', array('sanitize_callback'=>'sanitize_text_field', 'default'=>'Headline Default'));
 
     // Word Count
     add_settings_field( 'wcp_wordcount', 'Word Count', array($this, 'checkBoxHTML'), 'word-count-settings-page', 'wcp_first_section', array('theName'=>'wcp_wordcount'));
