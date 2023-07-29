@@ -16,6 +16,8 @@ class ourWordFilterPlugin {
   }
   function ourSettings() {
     add_settings_section('replacement-text-section', null, null, 'word-filter-options');
+    
+    // Display Filtered Text
     register_setting('replacementFields', 'replacementText');
     add_settings_field('replacement-text', 'Filtered Text', array($this, 'replacementFieldsdHTML'), 'word-filter-options', 'replacement-text-section');
   }
