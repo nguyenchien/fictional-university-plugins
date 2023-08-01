@@ -2,20 +2,27 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
   title: 'Are you paging attention?',
   icon: 'smiley',
   category: 'common',
-  edit: function() {
+  attributes: {
+    skyColor: {type: "string"},
+    glassColor: {type: "string"},
+  },
+  edit: function(props) {
+    function updateSkyColor(event) {
+      props.setAttributes({skyColor: event.target.value});
+    }
+    function updateGlassColor(event) {
+      props.setAttributes({glassColor: event.target.value});
+    }
     return (
-      <div className="wrap">
-        <h4>This is a h4 tag</h4>
-        <p>This is a text form JSX</p>
+      <div>
+        <input type="text" placeholder="sky color" value={props.attributes.skyColor} onChange={updateSkyColor} />
+        <input type="text" placeholder="glass color" value={props.attributes.glassColor} onChange={updateGlassColor} />
       </div>
     );
   },
-  save: function() {
+  save: function(props) {
     return (
-      <div className="wrap">
-        <h2>h2 form frontend</h2>
-        <h3>h3 form frontend</h3>
-      </div>
+      <p>Today the sky is <span className="skyColor">{props.attributes.skyColor}</span> and the glass is <span className="glassColor">{props.attributes.glassColor}</span></p>
     )
   },
 });

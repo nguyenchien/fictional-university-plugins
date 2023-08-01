@@ -94,15 +94,43 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
   title: 'Are you paging attention?',
   icon: 'smiley',
   category: 'common',
-  edit: function () {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "wrap"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h4", null, "This is a h4 tag"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "This is a text form JSX"));
+  attributes: {
+    skyColor: {
+      type: "string"
+    },
+    glassColor: {
+      type: "string"
+    }
   },
-  save: function () {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "wrap"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "h2 form frontend"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, "h3 form frontend"));
+  edit: function (props) {
+    function updateSkyColor(event) {
+      props.setAttributes({
+        skyColor: event.target.value
+      });
+    }
+    function updateGlassColor(event) {
+      props.setAttributes({
+        glassColor: event.target.value
+      });
+    }
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      placeholder: "sky color",
+      value: props.attributes.skyColor,
+      onChange: updateSkyColor
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "text",
+      placeholder: "glass color",
+      value: props.attributes.glassColor,
+      onChange: updateGlassColor
+    }));
+  },
+  save: function (props) {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Today the sky is ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "skyColor"
+    }, props.attributes.skyColor), " and the glass is ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "glassColor"
+    }, props.attributes.glassColor));
   }
 });
 })();
