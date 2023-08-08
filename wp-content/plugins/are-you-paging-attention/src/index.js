@@ -21,8 +21,6 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
     );
   },
   save: function(props) {
-    return (
-      <p>Today the sky is <span className="skyColor">{props.attributes.skyColor}</span> and the glass is <span className="glassColor">{props.attributes.glassColor}</span></p>
-    )
-  },
+    return null;
+  }
 });

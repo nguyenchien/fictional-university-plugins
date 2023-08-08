@@ -126,11 +126,7 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
     }));
   },
   save: function (props) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Today the sky is ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "skyColor"
-    }, props.attributes.skyColor), " and the glass is ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "glassColor"
-    }, props.attributes.glassColor));
+    return null;
   }
 });
 })();
