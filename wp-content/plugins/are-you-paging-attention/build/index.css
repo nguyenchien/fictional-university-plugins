@@ -6,5 +6,27 @@
   box-sizing: border-box;
   background-color: #f0f0f0;
 }
+.paying-attention-edit-block .components-base-control__label {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.paying-attention-edit-block .mark-as-correct {
+  color: #ffd700;
+  position: relative;
+  top: -3px;
+  transition: transform 0.3s ease-out;
+}
+.paying-attention-edit-block .mark-as-correct:hover {
+  transform: scale(1.25) rotate(12deg);
+}
+.paying-attention-edit-block .attention-delete {
+  color: #ff0000;
+  position: relative;
+  top: -5px;
+}
+.paying-attention-edit-block .attention-delete:hover {
+  color: #c20000 !important;
+}
 
 /*# sourceMappingURL=index.css.map*/

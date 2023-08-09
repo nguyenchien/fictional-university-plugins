@@ -17,7 +17,7 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
     }
     return (
       <div className="paying-attention-edit-block">
-        <TextControl label='Question?' />
+        <p><TextControl label='Question?' style={{fontSize: "20px"}} /></p>
         <p>Answer:</p>
         <Flex>
           <FlexBlock>
@@ -25,13 +25,14 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
           </FlexBlock>
           <FlexItem>
             <Button>
-              <Icon icon="star-empty" />
+              <Icon icon="star-empty" className='mark-as-correct' />
             </Button>
           </FlexItem>
           <FlexItem>
-            <Button>Delete</Button>
+            <Button isLink className='attention-delete'>Delete</Button>
           </FlexItem>
         </Flex>
+        <p><Button isPrimary>Add another answer</Button></p>
       </div>
     );
   },
