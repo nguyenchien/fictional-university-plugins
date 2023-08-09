@@ -22,13 +22,11 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
           /></p>
         <p>Answer:</p>
         {props.attributes.answer.map((answer, index)=>{
-          
             function changeAnswer(newValue) {
               const newAnswer = props.attributes.answer.concat([]);
               newAnswer[index] = newValue;
               props.setAttributes({answer: newAnswer});
             }
-            
             return (
               <Flex>
                 <FlexBlock>
