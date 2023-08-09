@@ -1,3 +1,5 @@
+import './index.scss';
+import {TextControl, Flex, FlexBlock, FlexItem, Button, Icon} from "@wordpress/components";
 wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
   title: 'Are you paging attention?',
   icon: 'smiley',
@@ -14,9 +16,22 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
       props.setAttributes({glassColor: event.target.value});
     }
     return (
-      <div>
-        <input type="text" placeholder="sky color" value={props.attributes.skyColor} onChange={updateSkyColor} />
-        <input type="text" placeholder="glass color" value={props.attributes.glassColor} onChange={updateGlassColor} />
+      <div className="paying-attention-edit-block">
+        <TextControl label='Question?' />
+        <p>Answer:</p>
+        <Flex>
+          <FlexBlock>
+            <TextControl/>
+          </FlexBlock>
+          <FlexItem>
+            <Button>
+              <Icon icon="star-empty" />
+            </Button>
+          </FlexItem>
+          <FlexItem>
+            <Button>Delete</Button>
+          </FlexItem>
+        </Flex>
       </div>
     );
   },
