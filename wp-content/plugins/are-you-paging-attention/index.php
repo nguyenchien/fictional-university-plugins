@@ -23,8 +23,14 @@ class AreYouPagingAttention {
   }
 
   function theHTML($attributes) {
+    if (!is_admin()) {
+      wp_enqueue_style('attentionFrontendStyle', plugin_dir_url(__FILE__).'/build/frontend.css');
+      wp_enqueue_script('attentionFrontendScript', plugin_dir_url(__FILE__).'/build/frontend.js', array('wp-element'));
+    }
     ob_start(); ?>
-    <h3>Today the sky is <?php echo esc_html(isset($attributes['skyColor'])?$attributes['skyColor']:'') ?> and the grass is <?php echo esc_html(isset($attributes['glassColor'])?$attributes['glassColor']:'') ?>!</h3>
+    
+    <div class="paying-attention-update-me"></div>
+    
     <?php return ob_get_clean();
   }
 }
