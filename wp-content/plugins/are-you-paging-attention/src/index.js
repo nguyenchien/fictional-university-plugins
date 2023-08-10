@@ -33,7 +33,7 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
             onChange={updateQuestion}
           /></p>
         <p>Answer:</p>
-        {props.attributes.answer.map((answer, index)=>{
+        {props.attributes.answer.map((item, index)=>{
             // change answer
             function changeAnswer(newValue) {
               const newAnswer = props.attributes.answer.concat([]);
@@ -45,8 +45,9 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
               <Flex>
                 <FlexBlock>
                   <TextControl 
-                    value={answer} 
+                    value={item} 
                     onChange={changeAnswer}
+                    autoFocus={true}
                   />
                 </FlexBlock>
                 <FlexItem>

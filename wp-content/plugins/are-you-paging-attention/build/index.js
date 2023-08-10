@@ -161,7 +161,7 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
       },
       value: props.attributes.question,
       onChange: updateQuestion
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Answer:"), props.attributes.answer.map((answer, index) => {
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Answer:"), props.attributes.answer.map((item, index) => {
       // change answer
       function changeAnswer(newValue) {
         const newAnswer = props.attributes.answer.concat([]);
@@ -171,8 +171,9 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
         });
       }
       return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Flex, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexBlock, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-        value: answer,
-        onChange: changeAnswer
+        value: item,
+        onChange: changeAnswer,
+        autoFocus: true
       })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Icon, {
         icon: "star-empty",
         className: "mark-as-correct"
