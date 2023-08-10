@@ -123,7 +123,7 @@ function ourStartFunction() {
   let locked = false;
   wp.data.subscribe(function () {
     const results = wp.data.select("core/block-editor").getBlocks().filter(function (block) {
-      return block.name == "ourplugin/are-you-paging-attention" && block.correctAnswer == undefined;
+      return block.name == "ourplugin/are-you-paging-attention" && block.attributes.correctAnswer == undefined;
     });
     if (results.length && locked == false) {
       locked = true;
@@ -135,8 +135,7 @@ function ourStartFunction() {
     }
   });
 }
-// ourStartFunction();
-
+ourStartFunction();
 wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
   title: 'Are you paging attention?',
   icon: 'smiley',
@@ -147,7 +146,7 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
     },
     answer: {
       type: "array",
-      default: ["red", "green"]
+      default: [""]
     },
     correctAnswer: {
       type: "number",
