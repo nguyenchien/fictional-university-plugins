@@ -12,6 +12,18 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
     function updateQuestion(value) {
       props.setAttributes({question: value});
     }
+    // add answer
+    function addAnswer() {
+      props.setAttributes({answer: props.attributes.answer.concat([""])});
+    }
+
+    // delete answer
+    function deleteAnswer(indexToDelete) {
+      const newAnswer = props.attributes.answer.filter((item, index)=>{
+        return index != indexToDelete;
+      });
+      props.setAttributes({answer: newAnswer}); 
+    }
     return (
       <div className="paying-attention-edit-block">
         <p><TextControl
@@ -22,15 +34,20 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
           /></p>
         <p>Answer:</p>
         {props.attributes.answer.map((answer, index)=>{
+            // change answer
             function changeAnswer(newValue) {
               const newAnswer = props.attributes.answer.concat([]);
               newAnswer[index] = newValue;
               props.setAttributes({answer: newAnswer});
             }
+
             return (
               <Flex>
                 <FlexBlock>
-                  <TextControl value={answer} onChange={changeAnswer} />
+                  <TextControl 
+                    value={answer} 
+                    onChange={changeAnswer}
+                  />
                 </FlexBlock>
                 <FlexItem>
                   <Button>
@@ -38,12 +55,19 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
                   </Button>
                 </FlexItem>
                 <FlexItem>
-                  <Button isLink className='attention-delete'>Delete</Button>
+                  <Button 
+                    isLink 
+                    className='attention-delete'
+                    onClick={()=>deleteAnswer(index)}
+                  >Delete</Button>
                 </FlexItem>
               </Flex>
             )
         })}
-        <p><Button isPrimary>Add another answer</Button></p>
+        <p><Button 
+            isPrimary
+            onClick={addAnswer}
+          >Add another answer</Button></p>
       </div>
     );
   },

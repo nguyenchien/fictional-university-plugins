@@ -136,6 +136,22 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
         question: value
       });
     }
+    // add answer
+    function addAnswer() {
+      props.setAttributes({
+        answer: props.attributes.answer.concat([""])
+      });
+    }
+
+    // delete answer
+    function deleteAnswer(indexToDelete) {
+      const newAnswer = props.attributes.answer.filter((item, index) => {
+        return index != indexToDelete;
+      });
+      props.setAttributes({
+        answer: newAnswer
+      });
+    }
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "paying-attention-edit-block"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
@@ -146,6 +162,7 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
       value: props.attributes.question,
       onChange: updateQuestion
     })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Answer:"), props.attributes.answer.map((answer, index) => {
+      // change answer
       function changeAnswer(newValue) {
         const newAnswer = props.attributes.answer.concat([]);
         newAnswer[index] = newValue;
@@ -161,10 +178,12 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
         className: "mark-as-correct"
       }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.FlexItem, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
         isLink: true,
-        className: "attention-delete"
+        className: "attention-delete",
+        onClick: () => deleteAnswer(index)
       }, "Delete")));
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-      isPrimary: true
+      isPrimary: true,
+      onClick: addAnswer
     }, "Add another answer")));
   },
   save: function (props) {
