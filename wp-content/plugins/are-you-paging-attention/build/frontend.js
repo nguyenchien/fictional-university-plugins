@@ -131,14 +131,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const divsToUpdate = document.querySelectorAll('.paying-attention-update-me');
-divsToUpdate.forEach(function (div) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Quiz, null), div);
-  div.classList.remove('paying-attention-update-me');
+divsToUpdate.forEach(function (item) {
+  const data = JSON.parse(item.querySelector('pre').innerHTML);
+  react_dom__WEBPACK_IMPORTED_MODULE_2___default().render((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Quiz, {
+    ...data
+  }), item);
+  item.classList.remove('paying-attention-update-me');
 });
-function Quiz() {
+function Quiz(props) {
+  console.log(props);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "paying-attention-frontend"
-  }, "Hello from frontend.");
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, props.question), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, props.answer.map(item => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", null, item);
+  })));
 }
 })();
 
