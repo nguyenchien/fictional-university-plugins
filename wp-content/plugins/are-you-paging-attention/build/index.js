@@ -16215,7 +16215,21 @@ wp.blocks.registerBlockType('ourplugin/are-you-paging-attention', {
     },
     bgColor: {
       type: "string",
-      default: "#FBFBFB"
+      default: "#EBEBEB"
+    },
+    theAlignment: {
+      type: "string",
+      default: "left"
+    }
+  },
+  description: "This is a plugin about wordpress block editor with react js",
+  example: {
+    attributes: {
+      question: "What is the color?",
+      answer: ["green", "yellow", "red"],
+      correctAnswer: 0,
+      bgColor: "#EBEBEB",
+      theAlignment: "left"
     }
   },
   edit: EditComponent,
@@ -16264,7 +16278,12 @@ function EditComponent(props) {
     style: {
       backgroundColor: props.attributes.bgColor
     }
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.AlignmentToolbar, {
+    value: props.attributes.theAlignment,
+    onChange: x => props.setAttributes({
+      theAlignment: x
+    })
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
     title: "Background Color",
     initialOpen: true
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_color__WEBPACK_IMPORTED_MODULE_4__.ChromePicker, {
