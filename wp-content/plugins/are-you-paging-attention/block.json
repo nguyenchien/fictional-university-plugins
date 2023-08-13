@@ -1,0 +1,10 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourplugin/are-you-paging-attention",
+  "title": "Are You Paging Attention",
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./build/index.css",
+  "script": "file:./build/frontend.js",
+  "style": "file:./build/frontend.css"
+}
