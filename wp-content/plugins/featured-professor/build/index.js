@@ -14,6 +14,16 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -102,6 +112,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.scss */ "./src/index.scss");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 wp.blocks.registerBlockType("ourplugin/featured-professor", {
@@ -120,6 +133,14 @@ wp.blocks.registerBlockType("ourplugin/featured-professor", {
   }
 });
 function EditComponent(props) {
+  // get all professor
+  const allProfessor = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
+    return select("core").getEntityRecords("postType", "professor", {
+      per_page: -1
+    });
+  });
+  console.log(allProfessor);
+  if (allProfessor == undefined) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "loading...");
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "featured-professor-wrapper"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -132,16 +153,12 @@ function EditComponent(props) {
     }
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
     value: ""
-  }, "Select a option"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "1",
-    selected: props.attributes.professorID == 1
-  }, "professor 1"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "2",
-    selected: props.attributes.professorID == 2
-  }, "professor 2"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
-    value: "3",
-    selected: props.attributes.professorID == 3
-  }, "professor 3"))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "The HTML preview of the selected professor will appear here."));
+  }, "Select a option"), allProfessor && allProfessor.map(professor => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+      value: professor.id,
+      selected: props.attributes.professorID == professor.id
+    }, professor.title.rendered);
+  }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "The HTML preview of the selected professor will appear here."));
 }
 }();
 /******/ })()

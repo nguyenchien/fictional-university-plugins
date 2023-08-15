@@ -1,4 +1,5 @@
 import "./index.scss"
+import {useSelect} from "@wordpress/data"
 
 wp.blocks.registerBlockType("ourplugin/featured-professor", {
   title: "Professor Callout",
@@ -15,14 +16,22 @@ wp.blocks.registerBlockType("ourplugin/featured-professor", {
 })
 
 function EditComponent(props) {
+  // get all professor
+  const allProfessor = useSelect(select => {
+    return select("core").getEntityRecords("postType", "professor", {per_page: -1});
+  });
+  console.log(allProfessor);
+  
+  if (allProfessor == undefined) return <p>loading...</p>;
+  
   return (
     <div className="featured-professor-wrapper">
       <div className="professor-select-container">
-        <select onChange={(e)=>{props.setAttributes({professorID: e.target.value})}}>
+        <select onChange={e => {props.setAttributes({professorID: e.target.value})}}>
           <option value="">Select a option</option>
-          <option value="1" selected={props.attributes.professorID == 1}>professor 1</option>
-          <option value="2" selected={props.attributes.professorID == 2}>professor 2</option>
-          <option value="3" selected={props.attributes.professorID == 3}>professor 3</option>
+          {allProfessor && allProfessor.map(professor => {
+            return <option value={professor.id} selected={props.attributes.professorID==professor.id}>{professor.title.rendered}</option>
+          })}
         </select>
       </div>
       <div>
