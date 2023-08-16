@@ -139,7 +139,7 @@ function EditComponent(props) {
       per_page: -1
     });
   });
-  console.log(allProfessor);
+  console.log(props);
   if (allProfessor == undefined) return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "loading...");
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "featured-professor-wrapper"
