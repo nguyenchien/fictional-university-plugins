@@ -20,7 +20,7 @@ function EditComponent(props) {
   const allProfessor = useSelect(select => {
     return select("core").getEntityRecords("postType", "professor", {per_page: -1});
   });
-  console.log(props);
+  console.log(allProfessor);
   
   if (allProfessor == undefined) return <p>loading...</p>;
   

@@ -7,7 +7,9 @@
   Author URI: https://www.udemy.com/user/bradschiff/
 */
 
+
 if( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+require_once plugin_dir_path(__FILE__) . 'inc/generateProfessorHTML.php';
 
 class FeaturedProfessor {
   function __construct() {
@@ -24,11 +26,17 @@ class FeaturedProfessor {
       'editor_style' => 'featuredProfessorStyle'
     ));
   }
-
+  
   function renderCallback($attributes) {
-    return '<p>We will replace this content soon.</p>';
+    if (isset($attributes['professorID'])) {
+      wp_enqueue_style('featuredProfessorStyle');
+      return generateProfessorHTML($attributes['professorID']);
+    } else {
+      return null;
+    }
   }
-
+  
 }
 
 $featuredProfessor = new FeaturedProfessor();
+?>
