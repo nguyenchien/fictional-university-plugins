@@ -11,10 +11,10 @@
       <div class="professor-callout">
         <div class="professor-callout__photo" style="background-image: url(<?php the_post_thumbnail_url('professorPortrait'); ?>)"></div>
         <div class="professor-callout__text">
-          <h5><?php echo the_title(); ?></h5>
+          <h5><?php the_title(); ?></h5>
           <p><?php echo wp_trim_words(get_the_content(), 30, '...') ?></p>
           <p>
-            <b>Name teaches:</b>
+            <b><?php the_title(); ?> teaches:</b>
             <?php
               $relatedPrograms = get_field('related_programs');
               foreach ($relatedPrograms as $key => $program) {
